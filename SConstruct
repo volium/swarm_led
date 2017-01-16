@@ -16,16 +16,15 @@ env['PROGSUFFIX'] = '.elf'
 env['CPPPATH'] = [
     '#Inc',
     '#Drivers/CMSIS/Include',
-    '#Drivers/CMSIS/Device/ST/STM32F4xx/Include',
-    '#Drivers/STM32F4xx_HAL_Driver/Inc',
-    '#Drivers/STM32F4xx_HAL_Driver/Inc/Legacy',
+    '#Drivers/CMSIS/Device/ST/STM32F1xx/Include',
+    '#Drivers/STM32F1xx_HAL_Driver/Inc',
+    '#Drivers/STM32F1xx_HAL_Driver/Inc/Legacy',
     ]
 
 # compiler flags
 env['CCFLAGS'] = [
-    '-mcpu=cortex-m4',
-    '-mfpu=fpv4-sp-d16',
-    '-mfloat-abi=hard',
+    '-mcpu=cortex-m3',
+    '-mfloat-abi=soft',
     '-mthumb',
     '-O2',
     '-fsigned-char',
@@ -38,18 +37,17 @@ env['CCFLAGS'] = [
 
 # compiler flags
 env['ASFLAGS'] = [
-    '-mcpu=cortex-m4',
+    '-mcpu=cortex-m3',
     '-mthumb',
     ]
 
 # linker flags
 env['LINKFLAGS'] = [
-    '-mcpu=cortex-m4',
-    '-mfpu=fpv4-sp-d16',
-    '-mfloat-abi=hard',
+    '-mcpu=cortex-m3',
+    '-mfloat-abi=soft',
     '-mthumb',
     '-specs=nano.specs',
-    '-TSTM32F411RETx_FLASH.ld',
+    '-TSTM32F103RE_FLASH.ld',
     '-lc',
     '-lm',
     '-lnosys',
@@ -57,38 +55,37 @@ env['LINKFLAGS'] = [
     ]
 
 # defines
-env['CPPDEFINES'] = ['STM32F411xE']
+env['CPPDEFINES'] = ['STM32F103xE']
 
 # elf = SConscript('src/SConscript', variant_dir='build', duplicate=0)
 
-assemblyobject = env.StaticObject('Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f411xe.s')
+assemblyobject = env.StaticObject('Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xe.s')
 
 # build everything
 elf = env.Program(
     target = 'main',
     source = [
         assemblyobject,
-        'Src/LCD.c',
         'Src/main.c',
-        'Src/gpio.c',
-        'Src/tim.c',
-        'Src/stm32f4xx_hal_msp.c',
-        'Src/stm32f4xx_it.c',
-        'Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c',
-        'Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c',
+        # 'Src/gpio.c',
+        # 'Src/tim.c',
+        'Src/stm32f1xx_hal_msp.c',
+        'Src/stm32f1xx_it.c',
+        'Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c',
+        # 'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma_ex.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c',
+        # 'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ramfunc.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c',
+        # 'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr_ex.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c',
     ]
 )
 
