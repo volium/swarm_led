@@ -44,6 +44,15 @@ SPI_HandleTypeDef hspi1;
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
+// LED Data Structure - BGR
+typedef struct _LED_DATA_ {
+  uint8_t blue;
+  uint8_t green;
+  uint8_t red;
+} LED_DATA_t;
+
+LED_DATA_t led_data;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -54,6 +63,8 @@ static void MX_SPI1_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
+
+void setRGBLed(LED_DATA_t* data, uint8_t brightness);
 
 /* USER CODE END PFP */
 
@@ -86,6 +97,49 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  led_data.blue =  128;
+  led_data.green = 0;
+  led_data.red =   0;
+  setRGBLed(&led_data, 16);
+  HAL_Delay(800);
+
+  led_data.blue =  0;
+  led_data.green = 128;
+  led_data.red =   0;
+  setRGBLed(&led_data, 16);
+  HAL_Delay(800);
+
+  led_data.blue =  0;
+  led_data.green = 0;
+  led_data.red =   128;
+  setRGBLed(&led_data, 16);
+  HAL_Delay(800);
+
+  led_data.blue =  128;
+  led_data.green = 128;
+  led_data.red =   0;
+  setRGBLed(&led_data, 16);
+  HAL_Delay(800);
+
+  led_data.blue =  128;
+  led_data.green = 0;
+  led_data.red =   128;
+  setRGBLed(&led_data, 16);
+  HAL_Delay(800);
+
+  led_data.blue =  0;
+  led_data.green = 128;
+  led_data.red =   128;
+  setRGBLed(&led_data, 16);
+  HAL_Delay(800);
+
+  led_data.blue =  128;
+  led_data.green = 128;
+  led_data.red =   128;
+  setRGBLed(&led_data, 16);
+  HAL_Delay(800);
+
   while (1)
   {
   /* USER CODE END WHILE */
@@ -106,7 +160,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks
     */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -116,7 +170,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -130,11 +184,11 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 
-    /**Configure the Systick interrupt time 
+    /**Configure the Systick interrupt time
     */
   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
 
-    /**Configure the Systick 
+    /**Configure the Systick
     */
   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
@@ -153,7 +207,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -165,9 +219,9 @@ static void MX_SPI1_Init(void)
 
 }
 
-/** Configure pins as 
-        * Analog 
-        * Input 
+/** Configure pins as
+        * Analog
+        * Input
         * Output
         * EVENT_OUT
         * EXTI
@@ -194,6 +248,17 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+void setRGBLed(LED_DATA_t* data, uint8_t brightness)
+{
+  uint8_t startFrame[4] = {0};
+  uint8_t led_brightness = (0xe0 | brightness);
+  uint8_t *led_data=(uint8_t*)data; // to avoid warning about type in HAL_SPI_Transmit
+
+  HAL_SPI_Transmit(&hspi1, startFrame, sizeof(startFrame), 500); // send StartFrame (4 bytes)
+  HAL_SPI_Transmit(&hspi1, &led_brightness, sizeof(led_brightness), 500); // send brightness (1 byte)
+  HAL_SPI_Transmit(&hspi1, led_data, sizeof(LED_DATA_t), 500); // send bgr data (3 bytes)
+}
+
 /* USER CODE END 4 */
 
 /**
@@ -208,7 +273,7 @@ void Error_Handler(void)
   while(1)
   {
   }
-  /* USER CODE END Error_Handler */ 
+  /* USER CODE END Error_Handler */
 }
 
 #ifdef USE_FULL_ASSERT
@@ -233,10 +298,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-*/ 
+*/
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
