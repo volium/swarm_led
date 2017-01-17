@@ -41,6 +41,10 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define RGBLED_CLK_Pin GPIO_PIN_5
+#define RGBLED_CLK_GPIO_Port GPIOA
+#define RGBLED_DATA_Pin GPIO_PIN_7
+#define RGBLED_DATA_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_15
 #define LED_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
