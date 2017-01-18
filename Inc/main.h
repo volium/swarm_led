@@ -51,6 +51,8 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define SDIO_CD_Pin GPIO_PIN_13
+#define SDIO_CD_GPIO_Port GPIOC
 #define RGBLED_CLK_Pin GPIO_PIN_5
 #define RGBLED_CLK_GPIO_Port GPIOA
 #define RGBLED_DATA_Pin GPIO_PIN_7
