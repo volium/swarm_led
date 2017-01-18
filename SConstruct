@@ -20,7 +20,7 @@ env['CPPPATH'] = [
     '#Drivers/STM32F1xx_HAL_Driver/Inc',
     '#Drivers/STM32F1xx_HAL_Driver/Inc/Legacy',
     '#Middlewares/ST/STM32_USB_Device_Library/Core/Inc',
-    '#Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc',
+    '#Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc',
     ]
 
 # compiler flags
@@ -73,6 +73,7 @@ elf = env.Program(
         'Src/stm32f1xx_it.c',
         'Src/system_stm32f1xx.c',
         'Src/usb_device.c',
+        'Src/usbd_cdc_if.c',
         'Src/usbd_conf.c',
         'Src/usbd_desc.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c',
@@ -91,7 +92,7 @@ elf = env.Program(
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.c',
-        'Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c',
+        'Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c',
         'Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c',
         'Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c',
         'Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c',
