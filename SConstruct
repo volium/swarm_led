@@ -19,6 +19,8 @@ env['CPPPATH'] = [
     '#Drivers/CMSIS/Device/ST/STM32F1xx/Include',
     '#Drivers/STM32F1xx_HAL_Driver/Inc',
     '#Drivers/STM32F1xx_HAL_Driver/Inc/Legacy',
+    '#Middlewares/ST/STM32_USB_Device_Library/Core/Inc',
+    '#Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc',
     ]
 
 # compiler flags
@@ -67,17 +69,20 @@ elf = env.Program(
     source = [
         assemblyobject,
         'Src/main.c',
-        # 'Src/gpio.c',
-        # 'Src/tim.c',
         'Src/stm32f1xx_hal_msp.c',
         'Src/stm32f1xx_it.c',
         'Src/system_stm32f1xx.c',
+        'Src/usb_device.c',
+        'Src/usbd_conf.c',
+        'Src/usbd_desc.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd_ex.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c',
@@ -85,6 +90,11 @@ elf = env.Program(
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi_ex.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c',
         'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c',
+        'Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.c',
+        'Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c',
+        'Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c',
+        'Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c',
+        'Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c',
     ]
 )
 
