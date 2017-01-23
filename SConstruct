@@ -73,6 +73,7 @@ elf = env.Program(
     source = [
         assemblyobject,
         'Src/main.c',
+        'Src/LCD.c',
         'Src/stm32f1xx_hal_msp.c',
         'Src/stm32f1xx_it.c',
         'Src/system_stm32f1xx.c',
