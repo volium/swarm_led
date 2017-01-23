@@ -53,12 +53,54 @@
 
 #define SDIO_CD_Pin GPIO_PIN_13
 #define SDIO_CD_GPIO_Port GPIOC
+#define LCD_RST_Pin GPIO_PIN_3
+#define LCD_RST_GPIO_Port GPIOC
 #define RGBLED_CLK_Pin GPIO_PIN_5
 #define RGBLED_CLK_GPIO_Port GPIOA
 #define RGBLED_DATA_Pin GPIO_PIN_7
 #define RGBLED_DATA_GPIO_Port GPIOA
+#define LCD_CS_Pin GPIO_PIN_4
+#define LCD_CS_GPIO_Port GPIOC
+#define LCD_RD_Pin GPIO_PIN_5
+#define LCD_RD_GPIO_Port GPIOC
+#define LCD_DB0_Pin GPIO_PIN_0
+#define LCD_DB0_GPIO_Port GPIOB
+#define LCD_DB1_Pin GPIO_PIN_1
+#define LCD_DB1_GPIO_Port GPIOB
+#define LCD_DB2_Pin GPIO_PIN_2
+#define LCD_DB2_GPIO_Port GPIOB
+#define LCD_DB10_Pin GPIO_PIN_10
+#define LCD_DB10_GPIO_Port GPIOB
+#define LCD_DB11_Pin GPIO_PIN_11
+#define LCD_DB11_GPIO_Port GPIOB
+#define LCD_DB12_Pin GPIO_PIN_12
+#define LCD_DB12_GPIO_Port GPIOB
+#define LCD_DB13_Pin GPIO_PIN_13
+#define LCD_DB13_GPIO_Port GPIOB
+#define LCD_DB14_Pin GPIO_PIN_14
+#define LCD_DB14_GPIO_Port GPIOB
+#define LCD_DB15_Pin GPIO_PIN_15
+#define LCD_DB15_GPIO_Port GPIOB
+#define LCD_RS_Pin GPIO_PIN_6
+#define LCD_RS_GPIO_Port GPIOC
+#define LCD_WR_Pin GPIO_PIN_7
+#define LCD_WR_GPIO_Port GPIOC
 #define LED_Pin GPIO_PIN_15
 #define LED_GPIO_Port GPIOA
+#define LCD_DB3_Pin GPIO_PIN_3
+#define LCD_DB3_GPIO_Port GPIOB
+#define LCD_DB4_Pin GPIO_PIN_4
+#define LCD_DB4_GPIO_Port GPIOB
+#define LCD_DB5_Pin GPIO_PIN_5
+#define LCD_DB5_GPIO_Port GPIOB
+#define LCD_DB6_Pin GPIO_PIN_6
+#define LCD_DB6_GPIO_Port GPIOB
+#define LCD_DB7_Pin GPIO_PIN_7
+#define LCD_DB7_GPIO_Port GPIOB
+#define LCD_DB8_Pin GPIO_PIN_8
+#define LCD_DB8_GPIO_Port GPIOB
+#define LCD_DB9_Pin GPIO_PIN_9
+#define LCD_DB9_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
