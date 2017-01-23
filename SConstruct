@@ -29,6 +29,8 @@ env['CCFLAGS'] = [
     '-mfloat-abi=soft',
     '-mthumb',
     '-O2',
+    '-g',
+    '-ggdb',
     '-fsigned-char',
     '-ffunction-sections',
     '-fdata-sections',
@@ -41,6 +43,8 @@ env['CCFLAGS'] = [
 env['ASFLAGS'] = [
     '-mcpu=cortex-m3',
     '-mthumb',
+    '-g',
+    '-ggdb'
     ]
 
 # linker flags
